@@ -22,10 +22,12 @@ app.get("/API/songs", async (request, response) => {
   response.send(await db.collection("songs").find({}).toArray());
 });
 
-app.use(express.static(path.join(__dirname, "../../Front-End/dist")));
+// Serve arquivos estáticos do Front-End
+app.use(express.static(path.join(__dirname, "Front-End/dist")));
 
+// Servir o index.html para qualquer outra rota
 app.get("*", (request, response) => {
-  response.sendFile(path.join(__dirname, "../../Front-End/dist/index.html"));
+  response.sendFile(path.join(__dirname, "Front-End/dist/index.html"));
 });
 
 app.listen(PORT, () => {
