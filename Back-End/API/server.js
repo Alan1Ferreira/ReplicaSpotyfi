@@ -24,10 +24,8 @@ app.get("/API/songs", async (request, response) => {
 
 app.use(express.static(path.join(__dirname, "../../Front-End/dist")));
 
-app.get("*", async (request, response) => {
-  response.sendFile(
-    express.static(path.join(__dirname, "../../Front-End/dist/index.html"))
-  );
+app.get("*", (request, response) => {
+  response.sendFile(path.join(__dirname, "../../Front-End/dist/index.html"));
 });
 
 app.listen(PORT, () => {
